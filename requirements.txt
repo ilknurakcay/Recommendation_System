@@ -1,0 +1,13 @@
+gensim
+pandas==2.2.0
+pandasai
+torch
+torchvision
+torchaudio
+networkx
+matplotlib
+scikit-learn
+nltk
+node2vec
+sentence-transformers
+faiss-cpu
