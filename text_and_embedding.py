@@ -2,16 +2,12 @@ import re
 import pandas as pd
 import numpy as np
 import nltk
-import nltk
 nltk.data.path.append('/Users/ilknurakcay/Desktop/rec_sys')
-# Şimdi 'punkt' veri setini kullanabilirsiniz
 nltk.download('punkt')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from sentence_transformers import SentenceTransformer
 import pickle
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 
 # Ensure required NLTK resources are downloaded
 def download_nltk_resources():
@@ -26,7 +22,7 @@ def download_nltk_resources():
 def preprocess_text(text):
     """
     Preprocesses a given text by converting it to lowercase, removing special characters and numbers, 
-    tokenizing it, and filtering out Turkish stop words. Finally, it returns the cleaned text as a string.
+    tokenizing. Finally, it returns the cleaned text as a string.
     """
     if not isinstance(text, str):
         return ""
@@ -45,7 +41,7 @@ def preprocess_text(text):
     return ' '.join(tokens)
 
 
-#If you want to train model, you can use folowing 2  lines and and run create_embeddings_subgraph.
+#If you want to run train model, you can use folowing 2 lines and and run create_embeddings_subgraph.
 #model_name = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"  # Türkçe desteği olan çok dilli model
 #sentence_transformer = SentenceTransformer(model_name)
 """
@@ -54,9 +50,9 @@ def create_embeddings_subgraph(item_info, sentence_transformer, G_subgraph):
    # Generates text embeddings for job nodes that exist in the given subgraph.
 
     #Parameters:
-    #- item_info (pd.DataFrame): A dataframe containing job-related information.
+    #- item_info : A dataframe containing job-related information.
     #- sentence_transformer (SentenceTransformer): A pre-trained sentence embedding model used to generate embeddings.
-    #- G_subgraph: A subgraph containing job and user nodes.
+    #- G_subgraph: A subgraph include  job and user nodes.
 
     
     item_embeddings = {}
