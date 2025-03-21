@@ -7,10 +7,11 @@ import pandas as pd
 def combine_embeddings(loaded_item_embeddings, model, vector_size=64):
     """
     It creates a final_embeddings list by combining the Node2Vec and Job Embeddings vectors of all job IDs.
+
     Parameters:
-    - loaded_item_embeddings:  containing job embeddings (ID -> 384 dimensional vector).
+    - loaded_item_embeddings:  job embeddings (ID -> 384 dimensional vector).
     - model: Model containing Node2Vec vectors.
-    - vector_size: Size of Node2Vec vectors (default: 64).
+    - vector_size: Size of Node2Vec vectors (64).
 
     Return:
     - final_embeddings: List of 448-dimensional embedding vectors.  
@@ -47,12 +48,12 @@ def create_faiss_index(final_embeddings, item_ids):
     - item_ids: List of item IDs corresponding to the embeddings.
 
     """
-    final_embeddings = np.array(final_embeddings).astype(np.float32)  # Ensure correct dtype
+    final_embeddings = np.array(final_embeddings).astype(np.float32) 
 
     dim = final_embeddings.shape[1]  # Get embedding dimension (e.g., 448)
     index = faiss.IndexFlatL2(dim)  # Create L2 FAISS index
 
-    index.add(final_embeddings)  # Add embeddings to FAISS index
+    index.add(final_embeddings) 
 
     # Create a mapping from item_id to FAISS index position
     item_id_to_index = {item_id: idx for idx, item_id in enumerate(item_ids)}
@@ -62,18 +63,19 @@ def create_faiss_index(final_embeddings, item_ids):
 
 def get_top_n_similar_jobs(job_id, N=5):
     """
-    Returns the top N most similar job listings based on the specified job ID using FAISS.
+
+    Determine the top N most similar job listings based on the specified job ID using FAISS.
     
     Parameters:
         job_id : The job ID for which recommendations are requested.
-        N (int): The number of similar job listings to return.
+        N : The number of similar job list
     """
-    #Check the format
+    # Check the format
     formatted_job_id = str(job_id)
     if not formatted_job_id.startswith("J_"):
         formatted_job_id = f"J_{formatted_job_id}"
 
-    #If the job is not in the database, give an error
+    # If the job is not in the database, give an error
     if formatted_job_id not in item_id_to_index:
         print(f"WARNING: {formatted_job_id} vector is not find database!")
         return []
