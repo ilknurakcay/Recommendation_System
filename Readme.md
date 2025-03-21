@@ -10,7 +10,7 @@ The project consists of four main Python scripts and a report document:
 2. `node2vec_embeddings.py` - Generate graph-based embeddings using Node2Vec
 3. `text_and_embedding.py` - Process text data and create embeddings from job 
 4. `recommendation_system.py` - Combine embeddings and provide job recommendations
-5. `İlan Öneri Sistemi Raporu.pdf` - Comprehensive report (in Turkish)
+5. `İlan Öneri Sistemi Raporu.pdf` - Report
 
 ## Prerequisites
 
@@ -55,7 +55,7 @@ python data_loading.py
 
 This script:
 - Loads job listing information and user event data
-- Creates a bipartite graph representing user-job interactions
+- Creates a graph representing user-job interactions
 - Creates a subgraph for better memory management
 - Saves the subgraph as `job_subgraph.pkl`
 
@@ -68,13 +68,13 @@ python node2vec_embeddings.py
 ```
 
 This script:
-- Loads the pre-trained Node2Vec model
+- Loads the trained Node2Vec model
 - Creates job embeddings from the graph structure
 - Calculates similarity between random job pairs to evaluate embeddings
 
 ### 3. Text Processing and Embedding
 
-Run the `text_and_embedding.py` script to process job descriptions and create text-based embeddings:
+Run the `text_and_embedding.py` script to process job descriptions(text-based) embeddings:
 
 ```bash
 python text_and_embedding.py
@@ -84,7 +84,7 @@ This script:
 - Downloads necessary NLTK resources for text processing
 - Preprocesses job titles and descriptions
 - Combines cleaned title and description data
-- Loads pre-trained SentenceTransformer embeddings (or can train new ones)
+- Loads trained SentenceTransformer embeddings 
 
 ### 4. Recommendation System
 
@@ -128,6 +128,6 @@ J_4029367 - Kobi Bankacılığı Portföy Yöneticisi / Ankara - Similarity Scor
 ```
 
 Note that lower similarity scores indicate more relevant job matches.
-## Resources
+
 
 For more details on the implementation and methodology, refer to the included report document: `İlan Öneri Sistemi Raporu.pdf`.
