@@ -11,8 +11,8 @@ def load_data(item_info_path, user_data_path):
     Load the dataset files.
     
     Parameters:
-    - item_info_path: Path to the item information CSV file
-    - user_data_path: Path to the user event data CSV file
+    - item_info_path: item information CSV file
+    - user_data_path: user event data CSV file
     
     """
     item_info = pd.read_csv(item_info_path)  
@@ -24,7 +24,7 @@ def load_data(item_info_path, user_data_path):
 
 def create_graph(item_info, user_data):
     """
-    Creates a bipartite graph representing interactions between users and job postings.
+    Creates graph  between users and job postings.
 
     Parameters:
     - item_info (pandas.DataFrame): A dataframe containing job details.
@@ -43,10 +43,10 @@ def create_graph(item_info, user_data):
     """
     G = nx.Graph()
 
-    #client ids and item ids
+    #client ids/user and item ids/job
     for _, row in user_data.iterrows():
-        user = f"U_{row['client_id']}"  # Kullanıcı düğümü
-        job = f"J_{row['item_id']}"  # İlan düğümü
+        user = f"U_{row['client_id']}"  
+        job = f"J_{row['item_id']}"  
 
         # User and job nodes added graph
         G.add_node(user, type="user")
@@ -93,7 +93,7 @@ def get_subgraph(G, num_nodes=10000):
 
     Parameters:
     - G : The original graph.
-    - num_nodes (int, optional): The number of nodes to include in the subgraph. It was determined as 10000 due to lack of resources
+    - num_nodes : The number of nodes to include in the subgraph. It was determined as 10000 due to lack of resources
 
     """
     nodes_sample = list(G.nodes())[:num_nodes]  
